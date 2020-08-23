@@ -1,8 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router";
 import { Menu } from "../Menu/Menu";
-import Typography from "@material-ui/core/Typography/Typography";
-import { FormControl, Input } from "@material-ui/core";
 import { Home } from "../Home/Home";
 import { makeStyles, Box } from "@material-ui/core";
 import backgroundImage from "../../assets/images/background.png";
@@ -11,7 +9,7 @@ import { About } from "../About/About";
 import { SelfCareCheckIn } from "../SelfCareCheckIn/SelfCareCheckIn";
 import { Contact } from '../Contact/Contact';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
   background: {
     background: `url(${backgroundImage})`,
     position: "absolute" as "absolute",

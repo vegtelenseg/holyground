@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography/Typography';
-import { useTransition, animated } from 'react-spring'
+// import { useTransition, animated } from 'react-spring'
 
 const useStyles = (isScrolledTextColor: boolean) => makeStyles(theme => ({
   title: {
@@ -31,12 +31,12 @@ export const TagLine = ({ tagLineInfo }: { tagLineInfo: TagLine }) => {
   const [isScrolledTextColor, setIsScrolledTextColor] = React.useState(false);
   const classes = useStyles(isScrolledTextColor)();
   const { title, subTitle } = tagLineInfo;
-  const [items, set] = React.useState(title.split(' '))
-  const transitions = useTransition(items, item => item, {
-    from: { transform: 'translate3d(0,-40px,0)' },
-    enter: { transform: 'translate3d(0,0px,0)' },
-    leave: { transform: 'translate3d(0,-40px,0)' },
-  })
+  // const [items, set] = React.useState(title.split(' '))
+  // const transitions = useTransition(items, item => item, {
+  //   from: { transform: 'translate3d(0,-40px,0)' },
+  //   enter: { transform: 'translate3d(0,0px,0)' },
+  //   leave: { transform: 'translate3d(0,-40px,0)' },
+  // })
   React.useEffect(() => {
     window.addEventListener(
       "scroll",
