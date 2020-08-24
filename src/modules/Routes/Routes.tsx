@@ -24,6 +24,18 @@ const useStyles = makeStyles((_theme) => ({
   },
 }));
 
+export const SplashScreen = () => {
+  return (
+    <img alt="loading" src={require('../../assets/images/yoga.gif')} style={{
+      width: '10%',
+      left: '50%',
+      position: 'relative',
+      top: '50%',
+      transform: 'translate(-50%, -50%)',
+      opacity: 0.5
+    }} />
+  )
+}
 export const Routes = () => {
   const classes = useStyles();
   const Background = () => {
@@ -32,7 +44,7 @@ export const Routes = () => {
     </Box>
   }
   return (
-    <React.Suspense fallback={<Background />}>
+    <React.Suspense fallback={SplashScreen}>
       <Menu />
       <Background />
       <Switch>

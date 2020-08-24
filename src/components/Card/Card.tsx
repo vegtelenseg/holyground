@@ -90,7 +90,7 @@ export const Card = (props: CardInfo) => {
         <CardMedia
           className={classes.cover}
           image={pictureUrl}
-          title="Live from space album cover"
+          title={title}
         />
       )}
       <div className={classes.details}>
