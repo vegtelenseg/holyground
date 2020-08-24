@@ -8,11 +8,11 @@ import { theme } from "../../Theme";
 import {MobileMenu} from "./components/MobileMenu";
 
 export const menuItems = [
-  { name: "Home", url: "/home" },
-  { name: "About", url: "/about" },
-  { name: "Self-Care Check-in", url: "/check-in" },
-  { name: "Contact", url: "/contact" },
-  { name: "Blog", url: "/blog" },
+  { name: "Home", urls: ["/", "/home"] },
+  { name: "About", urls: ["/about"] },
+  { name: "Self-Care Check-in", urls: ["/check-in"] },
+  { name: "Contact", urls: ["/contact"] },
+  { name: "Blog", urls: ["/blog"] },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -46,8 +46,8 @@ const useStyles = makeStyles((theme) => ({
 export const Menu = withRouter(({ history }) => {
   const classes = useStyles();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'))
-  const isActiveRoute = (route: string) => {
-    return route === window.location.pathname
+  const isActiveRoute = (routes: string[]) => {
+    return routes.some(route => route === window.location.pathname)
   }
   return (
     isDesktop ? <Box
@@ -61,8 +61,8 @@ export const Menu = withRouter(({ history }) => {
       {menuItems.map((menuItem) => (
         <ul
           key={menuItem.name}
-          className={clsx(classes.menuItem, isActiveRoute(menuItem.url) ? classes.activeRoute : '')}
-          onClick={() => history.push(menuItem.url)}
+          className={clsx(classes.menuItem, isActiveRoute(menuItem.urls) ? classes.activeRoute : '')}
+          onClick={() => history.push(menuItem.urls[0])}
         >
           <Typography variant="h6">{menuItem.name}</Typography>
         </ul>

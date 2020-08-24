@@ -76,10 +76,10 @@ export const MobileMenu = withRouter(({ history }) => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {menuItems.map((text, _index) => (
-          <ListItem button key={text.name} onClick={() => handleClick(text.url)}>
+        {menuItems.map((menuItem, _index) => (
+          <ListItem button key={menuItem.name} onClick={() => handleClick(menuItem.urls[0])}>
             {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-            <ListItemText primary={text.name} className={classes.listItemText} />
+            <ListItemText primary={menuItem.name} className={classes.listItemText} />
           </ListItem>
         ))}
       </List>
