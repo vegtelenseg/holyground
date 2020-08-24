@@ -70,3 +70,6 @@ export const Menu = withRouter(({ history }) => {
     </Box> : <MobileMenu />
   );
 });
+
+
+export default Menu

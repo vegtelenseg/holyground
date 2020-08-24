@@ -54,3 +54,6 @@ export const Home = () => {
     </ContentContainer>
   );
 };
+
+
+export default Home

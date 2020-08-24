@@ -101,3 +101,5 @@ export const MobileMenu = withRouter(({ history }) => {
     </div>
   );
 })
+
+export default MobileMenu;

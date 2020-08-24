@@ -82,3 +82,5 @@ export const About = () => {
     </ContentContainer>
   )
 }
+
+export default About
