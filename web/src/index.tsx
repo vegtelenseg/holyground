@@ -12,7 +12,10 @@ import './index.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
+    <ApolloProvider
+      // @ts-ignore
+      client={client}
+    >
       <AuthController>
         <ThemeProvider theme={theme}>
           <App />

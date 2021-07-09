@@ -7,19 +7,22 @@ import backgroundImage from './assets/images/background.png'
 
 function App() {
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-        background: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat'
-      }}
-    >
+    <>
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          background: `url(${backgroundImage})`,
+          position: 'fixed',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center bottom'
+        }}
+      ></div>
       <Router>
         <Routes />
       </Router>
-    </div>
+    </>
   )
 }
 

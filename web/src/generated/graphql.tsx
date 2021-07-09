@@ -1191,6 +1191,22 @@ export type UpdateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
+export type CreateLeadMutationVariables = Exact<{
+  createLeadInput: CreateLeadInput;
+}>;
+
+
+export type CreateLeadMutation = (
+  { __typename?: 'Mutation' }
+  & { createLead?: Maybe<(
+    { __typename?: 'createLeadPayload' }
+    & { lead?: Maybe<(
+      { __typename?: 'Leads' }
+      & Pick<Leads, 'id'>
+    )> }
+  )> }
+);
+
 export type GetServicesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1199,15 +1215,57 @@ export type GetServicesQuery = (
   & { services?: Maybe<Array<Maybe<(
     { __typename?: 'Services' }
     & Pick<Services, 'title' | 'description' | 'buttonText'>
+    & { cover?: Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'url'>
+    )> }
   )>>> }
 );
 
 
+export const CreateLeadDocument = gql`
+    mutation createLead($createLeadInput: createLeadInput!) {
+  createLead(input: $createLeadInput) {
+    lead {
+      id
+    }
+  }
+}
+    `;
+export type CreateLeadMutationFn = Apollo.MutationFunction<CreateLeadMutation, CreateLeadMutationVariables>;
+
+/**
+ * __useCreateLeadMutation__
+ *
+ * To run a mutation, you first call `useCreateLeadMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateLeadMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createLeadMutation, { data, loading, error }] = useCreateLeadMutation({
+ *   variables: {
+ *      createLeadInput: // value for 'createLeadInput'
+ *   },
+ * });
+ */
+export function useCreateLeadMutation(baseOptions?: Apollo.MutationHookOptions<CreateLeadMutation, CreateLeadMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateLeadMutation, CreateLeadMutationVariables>(CreateLeadDocument, options);
+      }
+export type CreateLeadMutationHookResult = ReturnType<typeof useCreateLeadMutation>;
+export type CreateLeadMutationResult = Apollo.MutationResult<CreateLeadMutation>;
+export type CreateLeadMutationOptions = Apollo.BaseMutationOptions<CreateLeadMutation, CreateLeadMutationVariables>;
 export const GetServicesDocument = gql`
     query getServices {
   services {
     title
     description
+    cover {
+      url
+    }
     buttonText
   }
 }

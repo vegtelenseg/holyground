@@ -2,6 +2,9 @@ query getServices {
   services {
     title
     description
+    cover {
+      url
+    }
     buttonText
   }
 }
