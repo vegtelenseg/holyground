@@ -1,54 +1,37 @@
-import React from "react";
-import { Switch, Route } from "react-router";
+import React from 'react'
+import { Switch, Route } from 'react-router'
 
-import { makeStyles, Box } from "@material-ui/core";
-import backgroundImage from "../../assets/images/background.png";
+import { Login } from '../Login/Login'
 
-const Menu = React.lazy(() => import("../Menu/Menu"));
-const Home = React.lazy(() => import("../Home/Home"));
-const About = React.lazy(() => import("../About/About"));
-const SelfCareCheckIn = React.lazy(() => import("../SelfCareCheckIn/SelfCareCheckIn"));
-const Contact = React.lazy(() => import("../Contact/Contact"));
-const Footer = React.lazy(() => import("../Footer/Footer"));
-const useStyles = makeStyles((_theme) => ({
-  background: {
-    background: `url(${backgroundImage})`,
-    position: "absolute" as "absolute",
-    top: 0,
-    width: "100%",
-    backgroundSize: "cover",
-    backgroundPosition: "center center",
-    backgroundRepeat: "no-repeat",
-    height: "100%",
-    opacity: 0.9
-  },
-}));
+const Menu = React.lazy(() => import('../Menu/Menu'))
+const Home = React.lazy(() => import('../Home/Home'))
+const About = React.lazy(() => import('../About/About'))
+const SelfCareCheckIn = React.lazy(() => import('../SelfCareCheckIn/SelfCareCheckIn'))
+const Contact = React.lazy(() => import('../Contact/Contact'))
+const Footer = React.lazy(() => import('../Footer/Footer'))
 
 export const SplashScreen = () => {
   return (
-    <img alt="loading" src={require('../../assets/images/yoga.gif')} style={{
-      width: '10%',
-      left: '50%',
-      position: 'relative',
-      top: '50%',
-      transform: 'translate(-50%, -50%)',
-      opacity: 0.5
-    }} />
+    <img
+      alt="loading"
+      src={require('../../assets/images/yoga.gif')}
+      style={{
+        width: '10%',
+        left: '50%',
+        position: 'relative',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+        opacity: 0.5
+      }}
+    />
   )
 }
 export const Routes = () => {
-  const classes = useStyles();
-  const Background = () => {
-    return <Box position="fixed" width="100%" height="100%" top="0">
-      <div className={classes.background}></div>
-    </Box>
-  }
   return (
     <React.Suspense fallback={SplashScreen}>
       <Menu />
-      <Background />
       <Switch>
-        <Route path={["/", "/home"]} exact>
+        <Route path={['/', '/home']} exact>
           <Home />
         </Route>
         <Route path="/about" exact>
@@ -60,8 +43,11 @@ export const Routes = () => {
         <Route path="/contact" exact>
           <Contact />
         </Route>
+        <Route path="/login" exact>
+          <Login />
+        </Route>
       </Switch>
       <Footer />
     </React.Suspense>
-  );
-};
+  )
+}

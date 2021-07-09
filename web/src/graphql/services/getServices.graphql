@@ -1,0 +1,7 @@
+query getServices {
+  services {
+    title
+    description
+    buttonText
+  }
+}

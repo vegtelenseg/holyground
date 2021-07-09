@@ -2,7 +2,8 @@ import React from "react";
 import { Card, CardInfo } from "../../components/Card/Card";
 import { PageContentContainer } from "../../components/PageContentContainer/PageContentContainer";
 import { TagLine } from "../../components/TagLine/TagLine";
-import { ContentContainer } from '../../components/ContentContainer/ContentContainer';
+import { ContentContainer } from "../../components/ContentContainer/ContentContainer";
+import { useGetServicesQuery } from "../../generated/graphql";
 
 const cards: CardInfo[] = [
   {
@@ -38,22 +39,24 @@ const cards: CardInfo[] = [
   },
 ];
 export const Home = () => {
-
+  const { data } = useGetServicesQuery();
+  console.log("DATA: ", data);
   return (
     <ContentContainer>
-      <TagLine tagLineInfo={{
-        title: '"These mountains you are carrying, you were only supposed to climb"',
-        subTitle: 'Najwa Zebian'
-      }} />
-      <PageContentContainer heading="Home">
+      <TagLine
+        tagLineInfo={{
+          title:
+            '"These mountains you are carrying, you were only supposed to climb"',
+          subTitle: "Najwa Zebian",
+        }}
+      />
+      <PageContentContainer heading='Home'>
         {cards.map((card) => (
           <Card {...card} />
         ))}
       </PageContentContainer>
-
     </ContentContainer>
   );
 };
 
-
-export default Home
+export default Home;
