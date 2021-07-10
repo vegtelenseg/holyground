@@ -34,6 +34,101 @@ export type AdminUser = {
   lastname: Scalars['String'];
 };
 
+export type BookingInput = {
+  name?: Maybe<Scalars['String']>;
+  surname?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  service?: Maybe<Scalars['ID']>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type Bookings = {
+  __typename?: 'Bookings';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  name?: Maybe<Scalars['String']>;
+  surname?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  service?: Maybe<Services>;
+  published_at?: Maybe<Scalars['DateTime']>;
+};
+
+export type BookingsAggregator = {
+  __typename?: 'BookingsAggregator';
+  count?: Maybe<Scalars['Int']>;
+  totalCount?: Maybe<Scalars['Int']>;
+};
+
+export type BookingsConnection = {
+  __typename?: 'BookingsConnection';
+  values?: Maybe<Array<Maybe<Bookings>>>;
+  groupBy?: Maybe<BookingsGroupBy>;
+  aggregate?: Maybe<BookingsAggregator>;
+};
+
+export type BookingsConnectionCreated_At = {
+  __typename?: 'BookingsConnectionCreated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<BookingsConnection>;
+};
+
+export type BookingsConnectionEmail = {
+  __typename?: 'BookingsConnectionEmail';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<BookingsConnection>;
+};
+
+export type BookingsConnectionId = {
+  __typename?: 'BookingsConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<BookingsConnection>;
+};
+
+export type BookingsConnectionName = {
+  __typename?: 'BookingsConnectionName';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<BookingsConnection>;
+};
+
+export type BookingsConnectionPublished_At = {
+  __typename?: 'BookingsConnectionPublished_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<BookingsConnection>;
+};
+
+export type BookingsConnectionService = {
+  __typename?: 'BookingsConnectionService';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<BookingsConnection>;
+};
+
+export type BookingsConnectionSurname = {
+  __typename?: 'BookingsConnectionSurname';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<BookingsConnection>;
+};
+
+export type BookingsConnectionUpdated_At = {
+  __typename?: 'BookingsConnectionUpdated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<BookingsConnection>;
+};
+
+export type BookingsGroupBy = {
+  __typename?: 'BookingsGroupBy';
+  id?: Maybe<Array<Maybe<BookingsConnectionId>>>;
+  created_at?: Maybe<Array<Maybe<BookingsConnectionCreated_At>>>;
+  updated_at?: Maybe<Array<Maybe<BookingsConnectionUpdated_At>>>;
+  name?: Maybe<Array<Maybe<BookingsConnectionName>>>;
+  surname?: Maybe<Array<Maybe<BookingsConnectionSurname>>>;
+  email?: Maybe<Array<Maybe<BookingsConnectionEmail>>>;
+  service?: Maybe<Array<Maybe<BookingsConnectionService>>>;
+  published_at?: Maybe<Array<Maybe<BookingsConnectionPublished_At>>>;
+};
+
 
 
 export type FileInfoInput = {
@@ -179,10 +274,13 @@ export type LocaleInput = {
 };
 
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Leads | LeadsConnection | LeadsAggregator | LeadsGroupBy | LeadsConnectionId | LeadsConnectionCreated_At | LeadsConnectionUpdated_At | LeadsConnectionFirstname | LeadsConnectionLastname | LeadsConnectionEmail | LeadsConnectionMessage | LeadsConnectionPublished_At | CreateLeadPayload | UpdateLeadPayload | DeleteLeadPayload | Services | ServicesConnection | ServicesAggregator | ServicesGroupBy | ServicesConnectionId | ServicesConnectionCreated_At | ServicesConnectionUpdated_At | ServicesConnectionCover | ServicesConnectionTitle | ServicesConnectionDescription | ServicesConnectionButtonText | ServicesConnectionPublished_At | CreateServicePayload | UpdateServicePayload | DeleteServicePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Bookings | BookingsConnection | BookingsAggregator | BookingsGroupBy | BookingsConnectionId | BookingsConnectionCreated_At | BookingsConnectionUpdated_At | BookingsConnectionName | BookingsConnectionSurname | BookingsConnectionEmail | BookingsConnectionService | BookingsConnectionPublished_At | CreateBookingPayload | UpdateBookingPayload | DeleteBookingPayload | Leads | LeadsConnection | LeadsAggregator | LeadsGroupBy | LeadsConnectionId | LeadsConnectionCreated_At | LeadsConnectionUpdated_At | LeadsConnectionFirstname | LeadsConnectionLastname | LeadsConnectionEmail | LeadsConnectionMessage | LeadsConnectionPublished_At | CreateLeadPayload | UpdateLeadPayload | DeleteLeadPayload | Services | ServicesConnection | ServicesAggregator | ServicesGroupBy | ServicesConnectionId | ServicesConnectionCreated_At | ServicesConnectionUpdated_At | ServicesConnectionCover | ServicesConnectionTitle | ServicesConnectionDescription | ServicesConnectionButtonText | ServicesConnectionPublished_At | CreateServicePayload | UpdateServicePayload | DeleteServicePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload;
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createBooking?: Maybe<CreateBookingPayload>;
+  updateBooking?: Maybe<UpdateBookingPayload>;
+  deleteBooking?: Maybe<DeleteBookingPayload>;
   createLead?: Maybe<CreateLeadPayload>;
   updateLead?: Maybe<UpdateLeadPayload>;
   deleteLead?: Maybe<DeleteLeadPayload>;
@@ -211,6 +309,21 @@ export type Mutation = {
   forgotPassword?: Maybe<UserPermissionsPasswordPayload>;
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
+};
+
+
+export type MutationCreateBookingArgs = {
+  input?: Maybe<CreateBookingInput>;
+};
+
+
+export type MutationUpdateBookingArgs = {
+  input?: Maybe<UpdateBookingInput>;
+};
+
+
+export type MutationDeleteBookingArgs = {
+  input?: Maybe<DeleteBookingInput>;
 };
 
 
@@ -337,6 +450,9 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  booking?: Maybe<Bookings>;
+  bookings?: Maybe<Array<Maybe<Bookings>>>;
+  bookingsConnection?: Maybe<BookingsConnection>;
   lead?: Maybe<Leads>;
   leads?: Maybe<Array<Maybe<Leads>>>;
   leadsConnection?: Maybe<LeadsConnection>;
@@ -353,6 +469,29 @@ export type Query = {
   users?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
   usersConnection?: Maybe<UsersPermissionsUserConnection>;
   me?: Maybe<UsersPermissionsMe>;
+};
+
+
+export type QueryBookingArgs = {
+  id: Scalars['ID'];
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryBookingsArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryBookingsConnectionArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
 };
 
 
@@ -999,6 +1138,15 @@ export type UsersPermissionsUserGroupBy = {
   role?: Maybe<Array<Maybe<UsersPermissionsUserConnectionRole>>>;
 };
 
+export type CreateBookingInput = {
+  data?: Maybe<BookingInput>;
+};
+
+export type CreateBookingPayload = {
+  __typename?: 'createBookingPayload';
+  booking?: Maybe<Bookings>;
+};
+
 export type CreateLeadInput = {
   data?: Maybe<LeadInput>;
 };
@@ -1033,6 +1181,15 @@ export type CreateUserInput = {
 export type CreateUserPayload = {
   __typename?: 'createUserPayload';
   user?: Maybe<UsersPermissionsUser>;
+};
+
+export type DeleteBookingInput = {
+  where?: Maybe<InputId>;
+};
+
+export type DeleteBookingPayload = {
+  __typename?: 'deleteBookingPayload';
+  booking?: Maybe<Bookings>;
 };
 
 export type DeleteFileInput = {
@@ -1078,6 +1235,16 @@ export type DeleteUserInput = {
 export type DeleteUserPayload = {
   __typename?: 'deleteUserPayload';
   user?: Maybe<UsersPermissionsUser>;
+};
+
+export type EditBookingInput = {
+  name?: Maybe<Scalars['String']>;
+  surname?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  service?: Maybe<Scalars['ID']>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
 };
 
 export type EditFileInput = {
@@ -1149,6 +1316,16 @@ export type EditUserInput = {
   role?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type UpdateBookingInput = {
+  where?: Maybe<InputId>;
+  data?: Maybe<EditBookingInput>;
+};
+
+export type UpdateBookingPayload = {
+  __typename?: 'updateBookingPayload';
+  booking?: Maybe<Bookings>;
 };
 
 export type UpdateLeadInput = {

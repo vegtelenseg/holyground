@@ -85,8 +85,7 @@ export interface CardInfo {
   onClick: () => void
 }
 
-export const Card = (props: CardInfo) => {
-  const { title, description, onClick, cover } = props
+export const Card = ({ title, description, onClick, cover, buttonText }: CardInfo) => {
   const isDesktop = useMediaQuery(theme.breakpoints.down('sm'))
   const classes = useStyles(cover.url, isDesktop)()
   return (
@@ -111,7 +110,7 @@ export const Card = (props: CardInfo) => {
             className={classes.bookNowButton}
             onClick={onClick}
           >
-            Book now
+            {buttonText}
           </Button>
         </CardContent>
       </div>
