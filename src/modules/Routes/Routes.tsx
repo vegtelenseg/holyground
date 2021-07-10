@@ -9,7 +9,7 @@ const About = React.lazy(() => import('../About/About'))
 const SelfCareCheckIn = React.lazy(() => import('../SelfCareCheckIn/SelfCareCheckIn'))
 const Contact = React.lazy(() => import('../Contact/Contact'))
 const Booking = React.lazy(() => import('../Booking/Booking'))
-const Footer = React.lazy(() => import('../Footer/Footer'))
+// const Footer = React.lazy(() => import('../Footer/Footer'))
 
 export const SplashScreen = () => {
   return (

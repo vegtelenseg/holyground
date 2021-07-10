@@ -5,7 +5,7 @@ import { ContentContainer } from '../../components/ContentContainer/ContentConta
 import { PageContentContainer } from '../../components/PageContentContainer/PageContentContainer'
 import Grid from '@material-ui/core/Grid/Grid'
 import Typography from '@material-ui/core/Typography/Typography'
-import { makeStyles, Select, MenuItem, InputLabel } from '@material-ui/core'
+import { makeStyles, MenuItem } from '@material-ui/core'
 import Button from '@material-ui/core/Button/Button'
 import Box from '@material-ui/core/Box/Box'
 import { useForm } from 'react-hook-form'
@@ -13,6 +13,7 @@ import { useCreateBookingMutation, useGetServicesQuery } from '../../generated/g
 import { yupResolver } from '@hookform/resolvers/yup'
 import { TextField } from '../../components/TextField/TextField'
 import { useParams } from 'react-router'
+import { Select } from '../../components/Select/Select'
 
 interface BookingProps {
   name: string
@@ -43,7 +44,8 @@ const useBookingForm = () => {
       Yup.object().shape({
         name: Yup.string().required('Name cannot be blank'),
         surname: Yup.string().required('Surname cannot be blank'),
-        email: Yup.string().email('Not a valid email address').required('Email cannot be blank')
+        email: Yup.string().email('Not a valid email address').required('Email cannot be blank'),
+        service: Yup.string().required('Service cannot be blank')
       }),
     []
   )
@@ -63,7 +65,7 @@ const useBookingForm = () => {
         }
       })
     },
-    [createBooking]
+    [createBooking, id]
   )
 
   const {
@@ -75,7 +77,8 @@ const useBookingForm = () => {
     defaultValues: {
       name: '',
       surname: '',
-      email: ''
+      email: '',
+      service: ''
     }
   })
   return {
@@ -138,10 +141,11 @@ export const Booking = () => {
               <Grid container spacing={2}>
                 <Grid item xs={12} md={12}>
                   <Select
-                    label="Your message"
+                    label="Select service"
                     variant="outlined"
                     fullWidth
                     {...register('service')}
+                    message={errors?.email?.message}
                   >
                     {data &&
                       data.services &&

@@ -2,7 +2,6 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
 import { Waves } from '../../assets/svg/waves'
-import { TagLine } from '../TagLine/TagLine'
 
 const useStyles = makeStyles((theme) => ({
   pageHeadingContainer: {

@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { ThemeProvider } from '@material-ui/core'
 import { ApolloProvider } from '@apollo/react-hooks'
+import { RecoilRoot } from 'recoil'
 
 import App from './App'
 import * as serviceWorker from './serviceWorker'
@@ -16,11 +17,13 @@ ReactDOM.render(
       // @ts-ignore
       client={client}
     >
-      <AuthController>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </AuthController>
+      <RecoilRoot>
+        <AuthController>
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
+        </AuthController>
+      </RecoilRoot>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')

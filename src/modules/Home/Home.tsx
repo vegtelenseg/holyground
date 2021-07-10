@@ -4,6 +4,7 @@ import { PageContentContainer } from '../../components/PageContentContainer/Page
 import { ContentContainer } from '../../components/ContentContainer/ContentContainer'
 import { useGetServicesQuery } from '../../generated/graphql'
 import { useHistory } from 'react-router-dom'
+import { ReadMoreDialog } from '../../components/Dialogs/ReadMoreDialog'
 
 // const cards: CardInfo[] = [
 //   {
@@ -49,6 +50,7 @@ export const Home = () => {
             {data.services.map((card: any) => (
               <Card onClick={() => history.push(`/booking/${card.id}`)} {...card} />
             ))}
+            <ReadMoreDialog />
           </PageContentContainer>
         )}
       </ContentContainer>

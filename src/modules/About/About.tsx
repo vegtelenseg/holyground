@@ -1,6 +1,5 @@
 import React from 'react'
 import { PageContentContainer } from '../../components/PageContentContainer/PageContentContainer'
-import { TagLine } from '../../components/TagLine/TagLine'
 import { ContentContainer } from '../../components/ContentContainer/ContentContainer'
 import Grid from '@material-ui/core/Grid/Grid'
 import Typography from '@material-ui/core/Typography'

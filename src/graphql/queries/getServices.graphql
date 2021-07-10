@@ -3,9 +3,11 @@ query getServices {
     id
     title
     description
+    breakdown
     cover {
       url
     }
-    buttonText
+    readMore
+    bookNow
   }
 }
