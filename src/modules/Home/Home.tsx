@@ -1,9 +1,9 @@
 import React from 'react'
 import { Card } from '../../components/Card/Card'
 import { PageContentContainer } from '../../components/PageContentContainer/PageContentContainer'
-import { TagLine } from '../../components/TagLine/TagLine'
 import { ContentContainer } from '../../components/ContentContainer/ContentContainer'
 import { useGetServicesQuery } from '../../generated/graphql'
+import { useHistory } from 'react-router-dom'
 
 // const cards: CardInfo[] = [
 //   {
@@ -40,20 +40,14 @@ import { useGetServicesQuery } from '../../generated/graphql'
 
 export const Home = () => {
   const { data } = useGetServicesQuery()
-
+  const history = useHistory()
   if (data && data.services && data.services.length) {
     return (
       <ContentContainer>
-        <TagLine
-          tagLineInfo={{
-            title: '"These mountains you are carrying, you were only supposed to climb"',
-            subTitle: 'Najwa Zebian'
-          }}
-        />
         {data.services && (
           <PageContentContainer heading="Home">
             {data.services.map((card: any) => (
-              <Card {...card} />
+              <Card onClick={() => history.push(`/booking/${card.id}`)} {...card} />
             ))}
           </PageContentContainer>
         )}

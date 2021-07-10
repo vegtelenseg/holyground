@@ -24,12 +24,12 @@ export const SelfCareCheckIn = () => {
   }
   return (
     <ContentContainer>
-      <TagLine
+      {/* <TagLine
         tagLineInfo={{
           title:
             'Come, let us sit, hold the space in compassion, and acceptance. Put our problems on pause, and focus on showing our bodies kindness. Together. '
         }}
-      />
+      /> */}
       <PageContentContainer heading="Self Care Check In">
         <Card {...cardInfo} />
       </PageContentContainer>

@@ -23,11 +23,12 @@ export const baseTheme: Theme = createMuiTheme({
       dark: 'rgba(117, 174, 209, 0.7)',
       main: '#75AED1',
       light: '#66ADD0'
+    },
+    error: {
+      dark: '#C60C30',
+      main: '#C60C30',
+      light: '#C60C30'
     }
-
-    // error: {
-    //   main: '#C60C30',
-    // },
     // warning: {
     //   main: '#D2492A',
     // },

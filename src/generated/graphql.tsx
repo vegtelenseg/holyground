@@ -1368,6 +1368,26 @@ export type UpdateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
+export type CreateBookingMutationVariables = Exact<{
+  createBookingInput: CreateBookingInput;
+}>;
+
+
+export type CreateBookingMutation = (
+  { __typename?: 'Mutation' }
+  & { createBooking?: Maybe<(
+    { __typename?: 'createBookingPayload' }
+    & { booking?: Maybe<(
+      { __typename?: 'Bookings' }
+      & Pick<Bookings, 'id' | 'name' | 'surname'>
+      & { service?: Maybe<(
+        { __typename?: 'Services' }
+        & Pick<Services, 'title'>
+      )> }
+    )> }
+  )> }
+);
+
 export type CreateLeadMutationVariables = Exact<{
   createLeadInput: CreateLeadInput;
 }>;
@@ -1391,7 +1411,7 @@ export type GetServicesQuery = (
   { __typename?: 'Query' }
   & { services?: Maybe<Array<Maybe<(
     { __typename?: 'Services' }
-    & Pick<Services, 'title' | 'description' | 'buttonText'>
+    & Pick<Services, 'id' | 'title' | 'description' | 'buttonText'>
     & { cover?: Maybe<(
       { __typename?: 'UploadFile' }
       & Pick<UploadFile, 'url'>
@@ -1400,6 +1420,46 @@ export type GetServicesQuery = (
 );
 
 
+export const CreateBookingDocument = gql`
+    mutation createBooking($createBookingInput: createBookingInput!) {
+  createBooking(input: $createBookingInput) {
+    booking {
+      id
+      name
+      surname
+      service {
+        title
+      }
+    }
+  }
+}
+    `;
+export type CreateBookingMutationFn = Apollo.MutationFunction<CreateBookingMutation, CreateBookingMutationVariables>;
+
+/**
+ * __useCreateBookingMutation__
+ *
+ * To run a mutation, you first call `useCreateBookingMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateBookingMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createBookingMutation, { data, loading, error }] = useCreateBookingMutation({
+ *   variables: {
+ *      createBookingInput: // value for 'createBookingInput'
+ *   },
+ * });
+ */
+export function useCreateBookingMutation(baseOptions?: Apollo.MutationHookOptions<CreateBookingMutation, CreateBookingMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateBookingMutation, CreateBookingMutationVariables>(CreateBookingDocument, options);
+      }
+export type CreateBookingMutationHookResult = ReturnType<typeof useCreateBookingMutation>;
+export type CreateBookingMutationResult = Apollo.MutationResult<CreateBookingMutation>;
+export type CreateBookingMutationOptions = Apollo.BaseMutationOptions<CreateBookingMutation, CreateBookingMutationVariables>;
 export const CreateLeadDocument = gql`
     mutation createLead($createLeadInput: createLeadInput!) {
   createLead(input: $createLeadInput) {
@@ -1438,6 +1498,7 @@ export type CreateLeadMutationOptions = Apollo.BaseMutationOptions<CreateLeadMut
 export const GetServicesDocument = gql`
     query getServices {
   services {
+    id
     title
     description
     cover {

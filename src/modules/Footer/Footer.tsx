@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'flex-end',
     borderTop: '1px solid black',
-    position: 'fixed',
-    left: 0,
-    right: 0,
-    bottom: 0
+    position: 'fixed'
+    // left: 0,
+    // right: 0,
+    // bottom: 0
   },
   footerContent: {
     color: '#CCAE93',

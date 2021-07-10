@@ -8,7 +8,8 @@ const useStyles = (isScrolledTextColor: boolean) =>
     title: {
       transition: 'all 0.9s ease-in',
       letterSpacing: theme.spacing(0.2),
-      color: isScrolledTextColor ? '#655858' : theme.palette.common.white
+      // color: isScrolledTextColor ? '#655858' : theme.palette.common.white
+      color: '#655858'
     },
     heading: {
       width: 'calc(100% - 5rem)',
@@ -18,7 +19,8 @@ const useStyles = (isScrolledTextColor: boolean) =>
     subTitle: {
       letterSpacing: theme.spacing(0.3),
       transition: 'all 1.2s ease-in',
-      color: isScrolledTextColor ? '#655858' : theme.palette.common.white
+      // color: isScrolledTextColor ? '#655858' : theme.palette.common.white
+      color: '#655858'
     }
   }))
 

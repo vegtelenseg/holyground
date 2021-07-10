@@ -8,6 +8,7 @@ const Home = React.lazy(() => import('../Home/Home'))
 const About = React.lazy(() => import('../About/About'))
 const SelfCareCheckIn = React.lazy(() => import('../SelfCareCheckIn/SelfCareCheckIn'))
 const Contact = React.lazy(() => import('../Contact/Contact'))
+const Booking = React.lazy(() => import('../Booking/Booking'))
 const Footer = React.lazy(() => import('../Footer/Footer'))
 
 export const SplashScreen = () => {
@@ -43,11 +44,14 @@ export const Routes = () => {
         <Route path="/contact" exact>
           <Contact />
         </Route>
+        <Route path="/booking/:id" exact>
+          <Booking />
+        </Route>
         <Route path="/login" exact>
           <Login />
         </Route>
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </React.Suspense>
   )
 }

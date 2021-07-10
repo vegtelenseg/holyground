@@ -5,18 +5,20 @@ import { ContentContainer } from '../../components/ContentContainer/ContentConta
 import { PageContentContainer } from '../../components/PageContentContainer/PageContentContainer'
 import Grid from '@material-ui/core/Grid/Grid'
 import Typography from '@material-ui/core/Typography/Typography'
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Select, MenuItem, InputLabel } from '@material-ui/core'
 import Button from '@material-ui/core/Button/Button'
 import Box from '@material-ui/core/Box/Box'
 import { useForm } from 'react-hook-form'
-import { useCreateLeadMutation } from '../../generated/graphql'
+import { useCreateBookingMutation, useGetServicesQuery } from '../../generated/graphql'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { TextField } from '../../components/TextField/TextField'
-interface ContactProps {
+import { useParams } from 'react-router'
+
+interface BookingProps {
   name: string
   surname: string
   email: string
-  message: string
+  service: string
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -30,8 +32,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const useContactForm = () => {
-  const [createLead] = useCreateLeadMutation({
+const useBookingForm = () => {
+  const { id } = useParams<{ id: string }>()
+  const [createBooking] = useCreateBookingMutation({
     onError: (error: any) => console.log({ error })
   })
 
@@ -46,37 +49,35 @@ const useContactForm = () => {
   )
 
   const onSubmit = React.useCallback(
-    (data: ContactProps) => {
-      createLead({
+    (data: BookingProps) => {
+      createBooking({
         variables: {
-          createLeadInput: {
+          createBookingInput: {
             data: {
-              firstname: data.name,
-              lastname: data.surname,
+              name: data.name,
+              surname: data.surname,
               email: data.email,
-              message: data.message
+              service: id
             }
           }
         }
       })
     },
-    [createLead]
+    [createBooking]
   )
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid }
-  } = useForm<ContactProps>({
+    formState: { errors }
+  } = useForm<BookingProps>({
     resolver: yupResolver(validationSchema),
     defaultValues: {
       name: '',
       surname: '',
-      email: '',
-      message: ''
+      email: ''
     }
   })
-  console.log('Is valid: ', isValid)
   return {
     register,
     errors,
@@ -84,13 +85,17 @@ const useContactForm = () => {
   }
 }
 
-export const Contact = () => {
+export const Booking = () => {
   const classes = useStyles()
-  const { onSubmit, register, errors } = useContactForm()
-  console.log({ errors })
+  const { onSubmit, register, errors } = useBookingForm()
+
+  const { data } = useGetServicesQuery({
+    fetchPolicy: 'cache-and-network',
+    onError: (error: any) => console.log({ error })
+  })
   return (
     <ContentContainer>
-      <PageContentContainer heading="Contact us">
+      <PageContentContainer heading="Book a slot">
         <Grid container spacing={6}>
           <Grid item xs={12} md={6} className={classes.hgContactDetails}>
             <Typography variant="body1">We are in Lonehill, Johannesburg</Typography>
@@ -102,20 +107,20 @@ export const Contact = () => {
               <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
                   <TextField
-                    {...register('name')}
                     label="name"
                     placeholder="What should we call you?"
                     variant="outlined"
                     message={errors?.name?.message}
+                    {...register('name')}
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <TextField
-                    {...register('surname')}
                     label="surname"
                     placeholder="What's your surname?"
                     variant="outlined"
                     message={errors?.surname?.message}
+                    {...register('surname')}
                   />
                 </Grid>
               </Grid>
@@ -123,21 +128,28 @@ export const Contact = () => {
                 <Grid item xs={12} md={12}>
                   <TextField
                     label="email"
-                    {...register('email')}
                     placeholder="and your email address?"
                     variant="outlined"
                     message={errors?.email?.message}
+                    {...register('email')}
                   />
                 </Grid>
               </Grid>
               <Grid container spacing={2}>
                 <Grid item xs={12} md={12}>
-                  <TextField
+                  <Select
                     label="Your message"
-                    {...register('message')}
-                    placeholder="your message, if any"
                     variant="outlined"
-                  />
+                    fullWidth
+                    {...register('service')}
+                  >
+                    {data &&
+                      data.services &&
+                      data.services.length &&
+                      data.services.map((serivce) => (
+                        <MenuItem value={serivce?.id}>{serivce?.title}</MenuItem>
+                      ))}
+                  </Select>
                 </Grid>
               </Grid>
               <Box mt={2} display="flex">
@@ -159,4 +171,4 @@ export const Contact = () => {
   )
 }
 
-export default Contact
+export default Booking

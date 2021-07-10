@@ -1,5 +1,6 @@
 query getServices {
   services {
+    id
     title
     description
     cover {
